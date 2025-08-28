@@ -3,6 +3,7 @@ import MenuSection from './menuSection'
 
 // Icons
 import LatteImg from './assets/react.svg'
+import Logo from './assets/Icon.svg'
 
 // Interface for object for each item that will be used to store the data
 interface Item{
@@ -70,14 +71,6 @@ const itemDetails :ItemDetails= {
     type: "coffee",
     temp: "iced"
   },
-    "Iced Cap": {
-    name: "Iced Matcha",
-    price: 5.50,
-    description: "Like a matcha latte but cold",
-    image: LatteImg,
-    type: "coffee",
-    temp: "iced"
-  },
 }
 
 const items = Object.keys(itemDetails);
@@ -87,9 +80,9 @@ function App() {
   
   return (
     <>
-    <img src="./assets/kodys-koffee-logo.png" alt="Kody's Koffee Logo" className="logo"/>
-    <h1>Kody's Koffee</h1>
-    <aside className="sideFilter">
+    <img src={Logo} alt="Kody's Koffee Logo" className="logo"/>
+    <h1 className='header'>Kody's Koffee</h1>
+    <aside className='sideFilter'>
       <h2> Filter Options</h2>
       <ul>
         <li>All</li>
