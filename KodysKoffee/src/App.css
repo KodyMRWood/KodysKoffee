@@ -33,10 +33,27 @@
   }
 }
 
-.card {
-  padding: 2em;
+body{
+  display: grid;
+  grid-template-areas: 
+  "logo header header"
+  "sideFilter menuSection menuSection";
+  /*grid-template-columns: 1fr 3fr 3fr;*/
 }
 
-.read-the-docs {
-  color: #888;
+.menuSection{
+  display:flex;
+  justify-content: center;
+  align-items: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2rem;
+  
+}
+.card {
+  background-color: #1a1a1a;
+  border: #1a1a1a solid 1px;
+  color: white;
+  padding: 2em;
+  width: 25%;
 }
