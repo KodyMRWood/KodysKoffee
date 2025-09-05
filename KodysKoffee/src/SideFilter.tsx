@@ -9,7 +9,9 @@ export interface Props {
 
 function SideFilter({menu}: Props) {
     const [filters, setFilters] = useState<string[]>([]);
+    const [filtersType, setFiltersType] = useState<string[]>([]);
     const [newMenu, setNewMenu] = useState(menu);
+
     function UpdateFilters(newFilter:string)
     {
         if(filters.includes(newFilter)){
@@ -21,21 +23,51 @@ function SideFilter({menu}: Props) {
         }
     }
 
-    useEffect(()=>{FilterItems();}, [filters]);
+    function UpdateFiltersType(newFilter:string)
+    {
+        if(filtersType.includes(newFilter)){
+            const tempFilters = filtersType.filter((e)=> e !== newFilter);
+            setFiltersType(tempFilters);
+        }
+        else{
+            setFiltersType([...filtersType,newFilter]);
+        }
+    }
 
-    // TODO: Make sure to only add if not already added
+
+    useEffect(()=>{FilterItems();}, [filters,filtersType]);
+
     function FilterItems(){
+        let result: Item[] =[];
         if(filters.length>0)
         {
-            const tempItems = filters.map(( newFilter)=>{
-                const temp = menu.filter((item) => item.temp === newFilter || item.type === newFilter)
+            const tempItems = filters.map((newFilter)=>{
+                let temp = menu.filter((item) => ( item.temp === newFilter));
+                temp = Array.from(new Set(temp));
                 return temp;
             })
-            setNewMenu(tempItems.flat());
+            result = Array.from(new Set(tempItems.flat()));
+        }
+        else{
+            result = [...menu];
+        }
+
+        if(filtersType.length>0)
+        {
+            const tempItems = filtersType.map((newFilter)=>{
+                const temp = result.filter((item) => (item.type === newFilter));
+                const set = Array.from(new Set(temp));
+                return set;
+            })
+            result = Array.from(new Set(tempItems.flat()));
+        }
+
+        if (result.length>0){
+            setNewMenu(result);
         }
         else{
             setNewMenu([...menu]);
-        }   
+        }
     };
 
     return (
@@ -56,16 +88,15 @@ function SideFilter({menu}: Props) {
             <fieldset>
                 <legend>Type</legend>
                 <label htmlFor="coffee">
-                <input type="checkbox" id="coffee" onChange={()=>{UpdateFilters('coffee')}}/>
+                <input type="checkbox" id="coffee" onChange={()=>{UpdateFiltersType('coffee')}}/>
                     Coffee
                 </label>
                 <label htmlFor="matcha">
-                <input type="checkbox" id="matcha" onChange={()=>{UpdateFilters('matcha')}}/>
+                <input type="checkbox" id="matcha" onChange={()=>{UpdateFiltersType('matcha')}}/>
                     Matcha
                 </label>
             </fieldset>
         </aside>
-        {console.log(newMenu)}
         <MenuSection menu={newMenu}/>
     </>
     );
