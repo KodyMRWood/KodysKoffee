@@ -1,21 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  --brown: #6A5D3E;
+  --white: #F4F6DC;
+  --beige: #D0BE8F;
 
+  margin: 0 auto;
   text-align: center;
   font-family: "DM-Sans", sans-serif;
   display: grid;
   grid-template-columns: 2fr 6fr;
-  grid-template-rows: [row1-start] 10%;
+  grid-template-rows: [row1-start] 25vh;
   grid-template-areas: 
   "logo header"
   "sideFilter menuSection";
+
+  background-color: var(--brown);
 }
 
+html{
+  margin:0;
+  padding:0;
+  background-color: var(--brown);
+}
 body{
-  margin: 0;
+  margin: 0; 
+  padding:0;
+  background-color: var(--brown);
 }
 
 .logo {
@@ -23,6 +34,7 @@ body{
   justify-self: center;
   height: 6em;
   padding: 1.5em;
+  margin: auto;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -58,22 +70,63 @@ body{
   gap: 2rem;
   max-height: 100vh;
   overflow-y: scroll;
+  background-color: var(--white);
 }
 
 .header{
   grid-area: "header";
   justify-self: center;
   align-self: center;
+  font-size: 5rem;
 }
 
 .card {
-  background-color: #1a1a1a;
-  border: #1a1a1a solid 1px;
-  color: white;
-  padding: 2em;
-  margin: 2em 0;
-  width: 25%;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-template-rows: 200px 100px 100px;
+  grid-template-areas: 
+  "image image"
+  "name price"
+  "description description";
+  
+  background-color: var(--beige);
+  border: #1a1a1a solid 2px;
+  box-shadow: 1px 1px 20px black;
+  color: black;
+  margin: 2em ;
+  width: 30%;
 }
+
+.cardImg {
+  /*row start, col start, row end, col end*/
+  grid-area: 1 / 1 / 2 / 3;
+  justify-self: center;
+  align-self: center;
+  object-fit: cover;
+  width: 100%;
+  height: 100%
+}
+
+.itemName {
+  grid-area: 2 / 1 / 2 / 2;
+  justify-self: start;
+  font-size: 2rem;
+  margin: 0.75rem 0.5rem;
+}
+
+.itemPrice {
+  grid-area: 2 / 2 / 2 / 3;
+  justify-self: end;
+  font-size: 1rem;
+  margin: 1.5rem 0.5rem;
+}
+
+.itemDesc {
+  grid-area: 3 / 1 / 4 / 3;
+  justify-self: start;
+  margin: 0.75rem 0.5rem;
+}
+
 
 .sideFilter{
   grid-area: "sideFilter";
@@ -89,3 +142,8 @@ body{
 ::-webkit-scrollbar {
       display: none;
     }
+
+footer{
+  height: 25vh;
+    background: var(--brown);
+}

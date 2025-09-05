@@ -1,9 +1,14 @@
 import './App.css'
+import SideFilter from './SideFilter';
 
 // Icons
-import LatteImg from './assets/react.svg'
 import Logo from './assets/Icon.svg'
-import SideFilter from './SideFilter';
+import LatteImg from './assets/latte.jpg'
+import CappuccinoImg from './assets/cappuccino.jpg'
+import IcedCoffeeImg from './assets/icedcoffee.jpg'
+import IcedMatchaImg from './assets/icedMatcha.jpg'
+import MatchaLatteImg from './assets/matchalatte.jpg'
+import ColdBrewImg from './assets/coldbrew.jpg'
 
 // Interface for object for each item that will be used to store the data
 export interface Item{
@@ -29,23 +34,23 @@ const menu: Item[] = [
     name: "Cappuccino",
     price: 5.50,
     description: "Espresso Drink with extra milk foam",
-    image: LatteImg,
+    image: CappuccinoImg,
     type: "coffee",
     temp: "hot"
   },
   {
-    name: "Flat White",
+    name: "Cold Brew",
     price: 4.75,
-    description: "Equal parts espresso and steamed milk",
-    image: LatteImg,
+    description: "Steeped overnight, a delicious and strong iced coffee with cold foam",
+    image: ColdBrewImg,
     type: "coffee",
-    temp: "hot"
+    temp: "iced"
   },
     {
     name: "Matcha Latte",
     price: 5.50,
     description: "Ceremonial grade matcha with steamed milk",
-    image: LatteImg,
+    image: MatchaLatteImg,
     type: "matcha",
     temp: "hot"
   },
@@ -53,7 +58,7 @@ const menu: Item[] = [
     name: "Iced Latte",
     price: 5.00,
     description: "Like a latte but cold",
-    image: LatteImg,
+    image: IcedCoffeeImg,
     type: "coffee",
     temp: "iced"
   },
@@ -61,7 +66,7 @@ const menu: Item[] = [
     name: "Iced Matcha",
     price: 5.50,
     description: "Like a matcha latte but cold",
-    image: LatteImg,
+    image: IcedMatchaImg,
     type: "matcha",
     temp: "iced"
   }
@@ -74,6 +79,7 @@ function App() {
     <img src={Logo} alt="Kody's Koffee Logo" className="logo"/>
     <h1 className='header'>Kody's Koffee</h1>
         <SideFilter menu={menu}></SideFilter>
+    <footer></footer>
     </>
   )
 }
