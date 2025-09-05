@@ -26,7 +26,7 @@ const menu: Item[] = [
     temp: "hot"
   },
   {
-    name: "Cappacino",
+    name: "Cappuccino",
     price: 5.50,
     description: "Espresso Drink with extra milk foam",
     image: LatteImg,

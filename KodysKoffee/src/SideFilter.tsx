@@ -6,7 +6,6 @@ export interface Props {
   menu: Item[];
 }
 
-
 function SideFilter({menu}: Props) {
     const [filters, setFilters] = useState<string[]>([]);
     const [filtersType, setFiltersType] = useState<string[]>([]);
@@ -38,15 +37,14 @@ function SideFilter({menu}: Props) {
     useEffect(()=>{FilterItems();}, [filters,filtersType]);
 
     function FilterItems(){
-        let result: Item[] =[];
+        let result: Item[] = [...menu];
         if(filters.length>0)
         {
             const tempItems = filters.map((newFilter)=>{
-                let temp = menu.filter((item) => ( item.temp === newFilter));
-                temp = Array.from(new Set(temp));
+                const temp = result.filter((item) => ( item.temp === newFilter));
                 return temp;
             })
-            result = Array.from(new Set(tempItems.flat()));
+            result = ConvertToItemsSet(tempItems);
         }
         else{
             result = [...menu];
@@ -56,10 +54,9 @@ function SideFilter({menu}: Props) {
         {
             const tempItems = filtersType.map((newFilter)=>{
                 const temp = result.filter((item) => (item.type === newFilter));
-                const set = Array.from(new Set(temp));
-                return set;
+                return temp;
             })
-            result = Array.from(new Set(tempItems.flat()));
+            result = ConvertToItemsSet(tempItems);
         }
 
         if (result.length>0){
@@ -69,6 +66,13 @@ function SideFilter({menu}: Props) {
             setNewMenu([...menu]);
         }
     };
+
+    // Convert the list of items filtered out base on filters to a single array
+    // Then Convert to a set to erase duplicates and back to array 
+    function ConvertToItemsSet(items:Item[][])
+    {
+        return Array.from(new Set(items.flat()));
+    }
 
     return (
     <>
