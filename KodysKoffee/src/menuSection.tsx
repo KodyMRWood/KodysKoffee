@@ -21,6 +21,7 @@ interface Props {
 
 }
 
+
 function MenuSection( {items, itemDetails}: Props) {
   // Based on filter (useState), create a new array of all items that should be shown
   /*

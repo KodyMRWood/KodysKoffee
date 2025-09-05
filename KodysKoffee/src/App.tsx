@@ -1,5 +1,6 @@
 import './App.css'
 import MenuSection from './menuSection'
+import SideFilter from './SideFilter'
 
 // Icons
 import LatteImg from './assets/react.svg'
@@ -82,15 +83,7 @@ function App() {
     <>
     <img src={Logo} alt="Kody's Koffee Logo" className="logo"/>
     <h1 className='header'>Kody's Koffee</h1>
-    <aside className='sideFilter'>
-      <h2> Filter Options</h2>
-      <ul>
-        <li>All</li>
-        <li>Hot Drinks</li>
-        <li>Iced Drinks</li>
-        <li>Pastries</li>
-        </ul>
-    </aside>
+      <SideFilter></SideFilter>
       <MenuSection items={items} itemDetails={itemDetails}/>
     </>
   )
