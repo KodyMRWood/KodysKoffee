@@ -1,13 +1,12 @@
 import './App.css'
-import MenuSection from './menuSection'
-import SideFilter from './SideFilter'
 
 // Icons
 import LatteImg from './assets/react.svg'
 import Logo from './assets/Icon.svg'
+import SideFilter from './SideFilter';
 
 // Interface for object for each item that will be used to store the data
-interface Item{
+export interface Item{
     name: string;
     price: number;
     description: string;
@@ -16,15 +15,9 @@ interface Item{
     temp: string; // hot or iced
 }
 
-// Interface for the dictionary that will be made of the items
-interface ItemDetails {
-    [key: string]: Item;
-}
 
-// Dictionary of items with their details
-// Whenever you want to add a new drink / item you can look it up here
-const itemDetails :ItemDetails= {
-  "Latte":{
+const menu: Item[] = [
+{
     name: "Latte",
     price: 5,
     description: "A milky espresso based drink",
@@ -32,7 +25,7 @@ const itemDetails :ItemDetails= {
     type: "coffee",
     temp: "hot"
   },
-  "Cappacino":{
+  {
     name: "Cappacino",
     price: 5.50,
     description: "Espresso Drink with extra milk foam",
@@ -40,7 +33,7 @@ const itemDetails :ItemDetails= {
     type: "coffee",
     temp: "hot"
   },
-  "FlatWhite": {
+  {
     name: "Flat White",
     price: 4.75,
     description: "Equal parts espresso and steamed milk",
@@ -48,15 +41,15 @@ const itemDetails :ItemDetails= {
     type: "coffee",
     temp: "hot"
   },
-  "MatchLatte": {
+    {
     name: "Matcha Latte",
     price: 5.50,
     description: "Ceremonial grade matcha with steamed milk",
     image: LatteImg,
-    type: "coffee",
+    type: "matcha",
     temp: "hot"
   },
-  "Iced Latte": {
+  {
     name: "Iced Latte",
     price: 5.00,
     description: "Like a latte but cold",
@@ -64,27 +57,23 @@ const itemDetails :ItemDetails= {
     type: "coffee",
     temp: "iced"
   },
-  "Iced Matcha": {
+ {
     name: "Iced Matcha",
     price: 5.50,
     description: "Like a matcha latte but cold",
     image: LatteImg,
-    type: "coffee",
+    type: "matcha",
     temp: "iced"
-  },
-}
-
-const items = Object.keys(itemDetails);
+  }
+]
 
 function App() {
 
-  
   return (
     <>
     <img src={Logo} alt="Kody's Koffee Logo" className="logo"/>
     <h1 className='header'>Kody's Koffee</h1>
-      <SideFilter></SideFilter>
-      <MenuSection items={items} itemDetails={itemDetails}/>
+        <SideFilter menu={menu}></SideFilter>
     </>
   )
 }
