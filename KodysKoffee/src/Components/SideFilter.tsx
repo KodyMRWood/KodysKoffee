@@ -1,6 +1,6 @@
 import MenuSection from './menuSection';
 import { useEffect, useState } from 'react';
-import type {Item} from './App';
+import type {Item} from '../App';
 
 export interface Props {
   menu: Item[];
@@ -11,6 +11,7 @@ function SideFilter({menu}: Props) {
     const [filtersType, setFiltersType] = useState<string[]>([]);
     const [newMenu, setNewMenu] = useState(menu);
 
+    // Update the filters array when a filter is added or removed
     function UpdateFilters(newFilter:string)
     {
         if(filters.includes(newFilter)){
@@ -22,6 +23,8 @@ function SideFilter({menu}: Props) {
         }
     }
 
+    // Update the filters array when a filter is added or removed specifically for type
+    // Would like to make this more generic in the future
     function UpdateFiltersType(newFilter:string)
     {
         if(filtersType.includes(newFilter)){
@@ -33,9 +36,10 @@ function SideFilter({menu}: Props) {
         }
     }
 
-
+    // When the filters change, update the menu items shown
     useEffect(()=>{FilterItems();}, [filters,filtersType]);
 
+    // Filter the menu to only show the items that match the filters selected
     function FilterItems(){
         let result: Item[] = [...menu];
         if(filters.length>0)
@@ -78,27 +82,35 @@ function SideFilter({menu}: Props) {
     <>
         <aside className='sideFilter'>
             <h2> Filter Options</h2>
-            <fieldset>
+            <fieldset >
                 <legend>Temperature</legend>
-                <label htmlFor="hot">
-                <input type="checkbox" id="hot" onChange={()=>{UpdateFilters('hot')}}/>
-                    Hot
-                </label>
-                <label htmlFor="iced">
-                <input type="checkbox" id="iced" onChange={()=>{UpdateFilters('iced')}}/>
-                    Iced
-                </label>
+                <div>
+                    <label htmlFor="hot">
+                    <input type="checkbox" id="hot" onChange={()=>{UpdateFilters('hot')}}/>
+                        Hot
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="iced">
+                    <input type="checkbox" id="iced" onChange={()=>{UpdateFilters('iced')}}/>
+                        Iced
+                    </label>
+                </div>
             </fieldset>
             <fieldset>
                 <legend>Type</legend>
-                <label htmlFor="coffee">
-                <input type="checkbox" id="coffee" onChange={()=>{UpdateFiltersType('coffee')}}/>
-                    Coffee
-                </label>
-                <label htmlFor="matcha">
-                <input type="checkbox" id="matcha" onChange={()=>{UpdateFiltersType('matcha')}}/>
-                    Matcha
-                </label>
+                <div>
+                    <label htmlFor="coffee">
+                    <input type="checkbox" id="coffee" onChange={()=>{UpdateFiltersType('coffee')}}/>
+                        Coffee
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="matcha">
+                    <input type="checkbox" id="matcha" onChange={()=>{UpdateFiltersType('matcha')}}/>
+                        Matcha
+                    </label>
+                </div>
             </fieldset>
         </aside>
         <MenuSection menu={newMenu}/>

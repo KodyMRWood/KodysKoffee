@@ -1,5 +1,5 @@
 import ItemCard from "./ItemCard";
-import type {Item} from "./App";
+import type {Item} from "../App";
 
 interface Props{
   menu: Item[];

@@ -1,5 +1,6 @@
 import './App.css'
-import SideFilter from './SideFilter';
+import SideFilter from './Components/SideFilter';
+import Footer from './Components/Footer';
 
 // Icons
 import Logo from './assets/Icon.svg'
@@ -76,10 +77,10 @@ function App() {
 
   return (
     <>
-    <img src={Logo} alt="Kody's Koffee Logo" className="logo"/>
-    <h1 className='header'>Kody's Koffee</h1>
-        <SideFilter menu={menu}></SideFilter>
-    <footer></footer>
+      <img src={Logo} alt="Kody's Koffee Logo" className="logo"/>
+      <h1 className='header'>Kody's Koffee</h1>
+      <SideFilter menu={menu}></SideFilter>
+      <Footer></Footer>
     </>
   )
 }
