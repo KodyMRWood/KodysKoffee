@@ -76,7 +76,7 @@ body{
   grid-area: 1 / 2 / 2 / 3;
   justify-self: center;
   align-self: center;
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .card {
@@ -94,7 +94,14 @@ body{
   color: black;
   margin: 2em ;
   width: 30%;
+  transform: scale(1.0);
+  transition: transform 0.3s ease-in-out;
 }
+
+.card:hover{
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+} 
 
 .cardImg {
   /*row start, col start, row end, col end*/
